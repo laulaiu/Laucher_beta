@@ -6,19 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_favoritesApp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/btn_listaApp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@drawable/redond_button"
-        android:src="@drawable/ic_baseline_add_24"
-        android:layout_margin="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+      <include
+          android:id="@+id/container_clock"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          layout="@layout/adapter_header_apps"
+          android:layout_alignParentTop="true"/>
+
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_below="@+id/container_clock"
+          >
+
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/rc_favoritesApp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" />
+
+          <ImageButton
+              android:id="@+id/btn_listaApp"
+              android:layout_width="60dp"
+              android:layout_height="60dp"
+              android:background="@drawable/redond_button"
+              android:src="@drawable/ic_baseline_add_24"
+              android:layout_margin="25dp"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"/>
+
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+  </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
