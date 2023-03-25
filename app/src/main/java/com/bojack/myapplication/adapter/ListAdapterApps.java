@@ -83,7 +83,7 @@ public class ListAdapterApps extends RecyclerView.Adapter<ListAdapterApps.Holder
 
                     new AlertDialog.Builder(context)
                             .setTitle("Apps")
-                            .setMessage("você deseja adicionar ?")
+                            .setMessage("você deseja adicionar '"+nameApp+"' ?")
                             .setPositiveButton("Adiocionar", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -91,16 +91,23 @@ public class ListAdapterApps extends RecyclerView.Adapter<ListAdapterApps.Holder
                                     SharedPreferences sharedPref = context.getSharedPreferences(
                                             "app_recente",
                                             Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPref.edit();
 
                                     for(Map.Entry<String, ?> a : sharedPref.getAll().entrySet()){
                                         if(packageApp.equals(a.getValue())){
                                             sharedPref.edit().remove(a.getKey()).apply();
+                                            Map<String, String> map = (Map<String, String>) sharedPref.getAll();
+                                            List<String> ls = new ArrayList<String>(map.values());
+                                            for(int k = 0; k < ls.size();k++){
+                                                editor.putString(k+"", ls.get(k));
+                                            }
                                             break;
                                         }
                                     }
 
-                                    SharedPreferences.Editor editor = sharedPref.edit();
-                                    editor.putString(sharedPref.getAll().size()+"", packageApp );
+                                    int indice = sharedPref.getAll().size();
+
+                                    editor.putString(indice+"", packageApp );
                                     editor.apply();
                                     Toast.makeText(context, "SALVO!", Toast.LENGTH_SHORT).show();
                                 }

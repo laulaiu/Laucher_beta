@@ -63,10 +63,11 @@ public class ListAdapterAppsRecent extends RecyclerView.Adapter<ListAdapterAppsR
     public void onBindViewHolder(@NonNull Holder holder, @SuppressLint("RecyclerView") int position) {
 
         String packageApp = lista.get(position);
+        AppsMd ap = null;
         try{
 
             ResolveInfo ri = context.getPackageManager().resolveActivity(context.getPackageManager().getLaunchIntentForPackage(packageApp), 0);
-            AppsMd ap = new SharedPrefInfo().getApp(context, ri);
+            ap = new SharedPrefInfo().getApp(context, ri);
 
             Glide.with(context).load(ap.getIcone()).into(holder.icone_app_recent);
             holder.nome_app_recent.setText(ap.getNome());
@@ -84,13 +85,15 @@ public class ListAdapterAppsRecent extends RecyclerView.Adapter<ListAdapterAppsR
             }
         });
 
+
+        AppsMd finalAp = ap;
         holder.container_APP_click_recent.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
 
                 new AlertDialog.Builder(context)
                         .setTitle("Apps")
-                        .setMessage("você deseja apagar ?")
+                        .setMessage("você deseja apagar '"+finalAp.getNome()+"' ?")
                         .setPositiveButton("APAGAR", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
