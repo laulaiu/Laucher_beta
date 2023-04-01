@@ -1,4 +1,4 @@
-package com.bojack.myapplication.adapter;
+package com.bojack.tv64.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -18,9 +18,9 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bojack.myapplication.R;
-import com.bojack.myapplication.model.AppsMd;
-import com.bojack.myapplication.model.SharedPrefInfo;
+import com.bojack.tv64.R;
+import com.bojack.tv64.model.AppsMd;
+import com.bojack.tv64.model.SharedPrefInfo;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;

@@ -41,6 +41,17 @@
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintEnd_toEndOf="parent"/>
 
+          <Button
+              android:id="@+id/install_app"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="15dp"
+              android:text="Install"
+              android:textSize="10dp"
+              android:visibility="gone"
+              app:layout_constraintBottom_toTopOf="@+id/btn_listaApp"
+              app:layout_constraintEnd_toEndOf="parent" />
+
 
       </androidx.constraintlayout.widget.ConstraintLayout>
 

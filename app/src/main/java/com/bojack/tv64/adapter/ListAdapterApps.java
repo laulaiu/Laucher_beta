@@ -1,19 +1,14 @@
-package com.bojack.myapplication.adapter;
+package com.bojack.tv64.adapter;
 
 
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
-import android.text.BoringLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,24 +18,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.DialogFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bojack.myapplication.ListApp;
-import com.bojack.myapplication.R;
-import com.bojack.myapplication.model.AppsMd;
+import com.bojack.tv64.R;
+import com.bojack.tv64.model.AppsMd;
 import com.bumptech.glide.Glide;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ListAdapterApps extends RecyclerView.Adapter<ListAdapterApps.Holder> {
 
@@ -64,9 +50,7 @@ public class ListAdapterApps extends RecyclerView.Adapter<ListAdapterApps.Holder
     @Override
     public void onBindViewHolder(@NonNull Holder holder, @SuppressLint("RecyclerView") int position) {
 
-
             if(lista.get(position).getIcone() != null){
-
                 String packageApp = lista.get(position).getPackage_app();
                 ResolveInfo ri = context.getPackageManager().resolveActivity(context.getPackageManager().getLaunchIntentForPackage(packageApp), 0);
                 Glide.with(context).load(ri.loadIcon(context.getPackageManager())).into(holder.icone_app_adp);
@@ -75,9 +59,18 @@ public class ListAdapterApps extends RecyclerView.Adapter<ListAdapterApps.Holder
             }
 
             holder.nome_app_adp.setText(lista.get(position).getNome());
+
             holder.container_APP_click.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent = context.getPackageManager().getLaunchIntentForPackage(lista.get(position).getPackage_app());
+                    context.startActivity(intent);
+                }
+            });
+
+            holder.container_APP_click.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
                     String packageApp = lista.get(position).getPackage_app();
                     String nameApp = lista.get(position).getNome();
 
@@ -115,6 +108,8 @@ public class ListAdapterApps extends RecyclerView.Adapter<ListAdapterApps.Holder
                             .setNegativeButton(android.R.string.no, null)
                             .setIcon(android.R.drawable.ic_menu_upload_you_tube)
                             .show();
+
+                    return false;
                 }
             });
     }

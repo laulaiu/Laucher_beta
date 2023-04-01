@@ -1,4 +1,4 @@
-package com.bojack.myapplication;
+package com.bojack.tv64;
 
 import android.content.Context;
 

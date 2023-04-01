@@ -1,4 +1,4 @@
-package com.bojack.myapplication;
+package com.bojack.tv64;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,9 +10,9 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 
-import com.bojack.myapplication.adapter.ListAdapterApps;
-import com.bojack.myapplication.model.AppsMd;
-import com.bojack.myapplication.model.SharedPrefInfo;
+import com.bojack.tv64.adapter.ListAdapterApps;
+import com.bojack.tv64.model.AppsMd;
+import com.bojack.tv64.model.SharedPrefInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +37,7 @@ public class ListApp extends AppCompatActivity {
     }
 
     public void getallapps() throws PackageManager.NameNotFoundException {
+
         final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 

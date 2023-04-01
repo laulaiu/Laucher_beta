@@ -1,4 +1,4 @@
-package com.bojack.myapplication.model;
+package com.bojack.tv64.model;
 
 import android.graphics.drawable.Drawable;
 
