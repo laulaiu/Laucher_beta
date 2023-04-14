@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
     TextView hora_tv,downloadProgress;
     Button install_app;
     LinearLayout info_container_download;
-
+    public static String PACKAGE_NAME;
+    String pathApkFile;
 
     @Override
     protected void onResume() {
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        PACKAGE_NAME = getApplicationContext().getPackageName();
+        pathApkFile = Environment.getExternalStorageDirectory()+"/Android/data/"+PACKAGE_NAME+"/tv_64/";
         btn_listaApp = findViewById(R.id.btn_listaApp);
         rc_favoritesApp = findViewById(R.id.rc_favoritesApp);
         hora_tv = findViewById(R.id.hora_tv);
@@ -124,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     int stopTimer = 0;
-    String pathApkFile = Environment.getExternalStorageDirectory()+"/"+Environment.DIRECTORY_DOWNLOADS+"/tv_64/";
     public void downloadApp(){
 
         try{
@@ -133,7 +134,8 @@ public class MainActivity extends AppCompatActivity {
             request.setTitle("My File");
             request.setDescription("Downloading");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION);
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS+"/tv_64/","tv_64x.apk");
+            //request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS+"/tv_64/","tv_64x.apk");
+            request.setDestinationInExternalPublicDir("/Android/data/"+PACKAGE_NAME+"/tv_64/","tv_64x.apk");
 
             DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
             long downloadId = manager.enqueue(request);
@@ -325,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateRecycler() {
-        rc_favoritesApp.setLayoutManager(new GridLayoutManager(getApplicationContext(),4,LinearLayoutManager.VERTICAL,false));
+        rc_favoritesApp.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL, false));
         rc_favoritesApp.setAdapter(new ListAdapterAppsRecent(MainActivity.this));
     }
 

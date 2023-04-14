@@ -58,7 +58,11 @@ public class ListAdapterApps extends RecyclerView.Adapter<ListAdapterApps.Holder
                 Glide.with(context).load(R.drawable.icon_erro).into(holder.icone_app_adp);
             }
 
-            holder.nome_app_adp.setText(lista.get(position).getNome());
+            if(lista.get(position).getNome().length() >= 8){
+                holder.nome_app_adp.setText(lista.get(position).getNome().substring(0,8));
+            }else{
+                holder.nome_app_adp.setText(lista.get(position).getNome());
+            }
 
             holder.container_APP_click.setOnClickListener(new View.OnClickListener() {
                 @Override

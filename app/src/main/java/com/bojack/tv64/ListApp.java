@@ -1,6 +1,7 @@
 package com.bojack.tv64;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,7 +50,7 @@ public class ListApp extends AppCompatActivity {
             listaApp.add(ap);
         }
 
-        app_instalados.setLayoutManager(new LinearLayoutManager(ListApp.this));
+        app_instalados.setLayoutManager(new GridLayoutManager(ListApp.this, 5,LinearLayoutManager.VERTICAL, false));
         app_instalados.setAdapter(new ListAdapterApps(ListApp.this, listaApp));
     }
 }
